@@ -4,7 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/math.combinatorics "0.1.4"]
                  [com.clojure-goes-fast/clj-memory-meter "0.2.1"]
                  [com.github.jpmonettas/flow-storm-dbg "3.1.263"]]
@@ -14,6 +14,7 @@
 
   :signing  {:gpg-key "3A2F2AA9"}
 
+  ;:jvm-opts ["-J-Djdk.attach.allowAttachSelf"]
   :jvm-opts ["-Djdk.attach.allowAttachSelf"]
 
   :repl-options {:init-ns com.dean.interval-tree.playground}

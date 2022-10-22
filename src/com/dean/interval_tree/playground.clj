@@ -15,7 +15,11 @@
 
 (println "playground")
 
+(mm/measure [1])
+
 (comment
+  (try (mm/measure [1]) (catch Exception e (pst e)))
+
   (mm/measure [1])
 
   )
