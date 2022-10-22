@@ -5,12 +5,18 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/math.combinatorics "0.1.4"]]
+                 [org.clojure/math.combinatorics "0.1.4"]
+                 [com.clojure-goes-fast/clj-memory-meter "0.2.1"]
+                 [com.github.jpmonettas/flow-storm-dbg "3.1.263"]]
 
   :plugins [[lein-asciidoctor  "0.1.14"]
             [lein-codox "0.10.7"]]
 
   :signing  {:gpg-key "3A2F2AA9"}
+
+  :jvm-opts ["-Djdk.attach.allowAttachSelf"]
+
+  :repl-options {:init-ns com.dean.interval-tree.playground}
 
   :deploy-repositories [["clojars" {:url "https://clojars.org/repo"
                                     :username :env/clojars_user
