@@ -10,7 +10,8 @@
             [com.dean.interval-tree.tree.protocol :as p]
             [com.dean.interval-tree.tree.root :as t-root]
             [com.dean.interval-tree.tree.tree :as t-t]
-            [com.dean.interval-tree.core :as core]))
+            [com.dean.interval-tree.core :as core]
+            [flow-storm.api :as fs-api]))
 
 (def foo (shuffle (range 500000)))
 (def bar (shuffle (range 1000000)))
@@ -32,6 +33,10 @@
 (mm/measure [1])
 
 (comment
+
+  (fs-api/local-connect)
+  ;tracing #rtrace, #ctrace, #trace
+
   (try (mm/measure [1]) (catch Exception e (pst e)))
 
   (mm/measure [1])
@@ -50,6 +55,17 @@
                              [3 9] :x7
                              [4 5] :x8}))
 
+  (core/interval-map
+    {[1 3] :x1
+     [4 7] :x2
+     [8 9] :x3
+     [0 5] :x4
+     [6 8] :x5
+     [9 9] :x6
+     [3 9] :x7
+     [4 5] :x8})
+
+
   (mm/measure {[1 3] :x1
                [4 7] :x2
                [8 9] :x3
@@ -61,6 +77,10 @@
 
   (mm/measure (doall (for [i (range 500000)]
                        {[i i] i})))
+
+  #rtrace
+  (doall (for [i (range 20)]
+           {[i i] i}))
 
   (mm/measure (core/interval-map (into {} (for [i (range 70000)]
                                             {[i i] i}))))
