@@ -34,6 +34,8 @@
 
 (comment
 
+  (fs-api/instrument-forms-for-namespaces #{"com.dean.interval-tree.core"} {})
+
   (fs-api/local-connect)
   ;tracing #rtrace, #ctrace, #trace
 
@@ -64,6 +66,8 @@
      [9 9] :x6
      [3 9] :x7
      [4 5] :x8})
+
+  (core/ordered-set)
 
 
   (mm/measure {[1 3] :x1
