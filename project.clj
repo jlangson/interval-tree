@@ -14,7 +14,6 @@
 
   :signing  {:gpg-key "3A2F2AA9"}
 
-  ;:jvm-opts ["-J-Djdk.attach.allowAttachSelf"]
   :jvm-opts ["-Djdk.attach.allowAttachSelf"]
 
   :repl-options {:init-ns com.dean.interval-tree.playground}

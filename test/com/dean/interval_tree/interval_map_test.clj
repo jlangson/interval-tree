@@ -23,6 +23,15 @@
                          [9 9] :x6
                          [3 9] :x7
                          [4 5] :x8})]
+    (comment                                                ; for repl
+      (def x (interval-map {[1 3] :x1
+                            [4 7] :x2
+                            [8 9] :x3
+                            [0 5] :x4
+                            [6 8] :x5
+                            [9 9] :x6
+                            [3 9] :x7
+                            [4 5] :x8})))
     (testing "pointwise query"   ;; note: order returned determined by interval start
       (is (empty?               (x -1.00000000)))
       (is (empty?               (x -0.00000001)))

@@ -24,15 +24,56 @@
 (def y (core/ordered-set bar))
 (def z (core/ordered-set baz))
 
-(def a (core/interval-map foo))
-(def b (core/interval-map bar))
-(def c (core/interval-map baz))
+;(def a (core/interval-map foo))
+;(def b (core/interval-map bar))
+;(def c (core/interval-map baz))
+
+(def f
+  (core/interval-map
+    {[1 3] :x1
+     [4 7] :x2
+     [8 9] :x3
+     [0 5] :x4
+     [6 8] :x5
+     [9 9] :x6
+     [3 9] :x7
+     [4 5] :x8}))
+(def g
+  (core/interval-map {[1 2] :x1
+                      [4 5] :x2
+                      [8 12] :x3
+                      [0 3] :x4
+                      [2 8] :x5
+                      [1 4] :x6
+                      [12 14] :x7
+                      [-1 2] :x8}))
+
 
 (println "playground")
 
-(mm/measure [1])
+;(mm/measure [1])
+
+(defn rand-map [size]
+  (doall (core/interval-map (into {} (for [i (range size)]
+                                       {[0 (rand-int 50)] i}))))
+  )
+
+(defn just-time [f a]
+  (time (do (f a) nil)))
+
+(defn rand-map2 [size]
+  (for [i (range size)]
+    {[0 (rand-int 50)] i}) )
+
+(def xx (rand-map 500000))
+(def yy (rand-map 1000000))
+(def zz (rand-map 2000000))
+(def zzzz (rand-map 990000000))
+(def simple (rand-map 25))
 
 (comment
+
+  ;;massive map for querying
 
   (fs-api/instrument-forms-for-namespaces #{"com.dean.interval-tree.core"} {})
 
@@ -57,17 +98,7 @@
                              [3 9] :x7
                              [4 5] :x8}))
 
-  (core/interval-map
-    {[1 3] :x1
-     [4 7] :x2
-     [8 9] :x3
-     [0 5] :x4
-     [6 8] :x5
-     [9 9] :x6
-     [3 9] :x7
-     [4 5] :x8})
 
-  (core/ordered-set)
 
 
   (mm/measure {[1 3] :x1
@@ -84,9 +115,18 @@
 
   #rtrace
   (doall (for [i (range 20)]
-           {[i i] i}))
+           {[0 (rand-int 50)] i}))
 
   (mm/measure (core/interval-map (into {} (for [i (range 70000)]
                                             {[i i] i}))))
 
+  (mm/measure (doall (rand-map 2000000)))
+
   )
+
+
+
+
+
+(defn just-time [f]
+  (print (time f)))
