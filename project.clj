@@ -7,12 +7,15 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/math.combinatorics "0.1.6"]]
 
-  :profiles {:dev {:dependencies [[org.clojure/test.check "1.1.1"]]}}
+  :profiles {:dev {:dependencies [[org.clojure/test.check "1.1.1"]
+                                  [com.github.jpmonettas/flow-storm-dbg "3.1.263"]]}}
 
   :plugins [[lein-asciidoctor  "0.1.17"]
             [lein-codox "0.10.8"]]
 
   :signing  {:gpg-key "3A2F2AA9"}
+
+  :repl-options {:init-ns com.dean.interval-tree.playground}
 
   :deploy-repositories [["clojars" {:url "https://clojars.org/repo"
                                     :username :env/clojars_user

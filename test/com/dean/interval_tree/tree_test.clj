@@ -4,7 +4,8 @@
             [com.dean.interval-tree.tree.tree :as tree]
             [clojure.test.check.clojure-test :refer [defspec]]
             [clojure.test.check.properties :as prop]
-            [clojure.test.check.generators :as gen]))
+            [clojure.test.check.generators :as gen]
+            [flow-storm.api :as fs]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fixtures
@@ -305,6 +306,11 @@
 
 
   (comment
+    (fs/local-connect)
+    (fs/instrument-forms-for-namespaces #{"com.dean.interval-tree.tree.tree"} {})
+
+
+
     (def t-small (make-integer-tree 2))
     (gen/sample gen/small-integer 30)
     (def t (make-integer-tree 10))

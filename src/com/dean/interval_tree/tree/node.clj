@@ -79,3 +79,23 @@
 (definline -x  [n] `(.x  ~(with-meta n {:tag 'com.dean.interval_tree.tree.node.IBalancedNode})))
 (definline -z  [n] `(.z  ~(with-meta n {:tag 'com.dean.interval_tree.tree.node.IAugmentedNode})))
 (definline -kv [n] `(.kv ~(with-meta n {:tag 'com.dean.interval_tree.tree.node.INode})))
+
+(defmethod flow-storm.runtime.values/snapshot-value SimpleNode
+  [sn]
+  {:x (-x sn)
+   :k (-k sn)
+   :v (-v sn)
+   :l (-l sn)
+   :r (-r sn)
+   :kv (-kv sn)})
+
+(defmethod flow-storm.runtime.values/snapshot-value IntervalNode
+  [sn]
+  {:x (-x sn)
+   :z (-z sn)
+   :k (-k sn)
+   :v (-v sn)
+   :l (-l sn)
+   :r (-r sn)
+   :kv (-kv sn)})
+
