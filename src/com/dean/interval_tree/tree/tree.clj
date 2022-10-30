@@ -317,7 +317,7 @@
 ;; Balanced Tree Constructors (n-Join]
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-#trace
+;#trace
 (defn node-stitch-weight-balanced
   "Weight-Balancing Algorithm:
 
